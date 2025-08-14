@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://qxlk0c3aysmg"]
+
+[ext_resource type="Script" uid="uid://6g6tocnv2t8f" path="res://scripts/EnemyCard.gd" id="1_kjm37"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_kjm37")
+
+[node name="sprite" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="name_label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="curr_hp_label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="max_hp_label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="DropsList" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="drop_spr_1" type="TextureRect" parent="DropsList"]
+layout_mode = 2
+
+[node name="drop_spr_2" type="TextureRect" parent="DropsList"]
+layout_mode = 2

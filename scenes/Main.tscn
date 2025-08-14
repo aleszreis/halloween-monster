@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://8om46qkydudx"]
+
+[ext_resource type="Script" uid="uid://bfftcgxmqgkc1" path="res://scripts/Main.gd" id="1_elqb8"]
+[ext_resource type="Texture2D" uid="uid://bc3884cymkgux" path="res://assets/background.png" id="2_rvslj"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_elqb8")
+
+[node name="background" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rvslj")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Screen" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnemyArea" type="HBoxContainer" parent="Screen"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="BattlefieldArea" type="HBoxContainer" parent="Screen/EnemyArea"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="UpNextArea" type="HBoxContainer" parent="Screen/EnemyArea"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Spacer" type="Control" parent="Screen"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="PlayerArea" type="HBoxContainer" parent="Screen"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 20
