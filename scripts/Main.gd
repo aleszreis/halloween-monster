@@ -5,8 +5,9 @@ var player_card_scene = preload("res://scenes/PlayerCard.tscn")
 # Array de PlayerData: 1 jogador + 7 AIs
 var jogadores_data = []
 
-@onready var player_area = $Screen/PlayerArea
-@onready var enemy_area = $Screen/EnemyArea
+@export var player_area: HBoxContainer
+@export var battlefield_area: HBoxContainer
+@export var up_next_area: HBoxContainer
 
 func _ready():
 	carregar_jogadores()
@@ -30,4 +31,3 @@ func criar_cartas():
 		player_area.add_child(card)
 		card.set_data(data)
 		player_area.add_child(card)
-		prints('Loaded card')

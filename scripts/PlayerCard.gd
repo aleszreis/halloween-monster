@@ -1,8 +1,8 @@
 extends Control
 
-@onready var img = $sprite
-@onready var name_label = $nome
-@onready var hp_label = $hp
+@export var img: TextureRect
+@export var name_label: Label
+@export var hp_label: Label
 
 var dados: PlayerData
 

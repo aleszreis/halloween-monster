@@ -2,49 +2,68 @@
 
 [ext_resource type="Script" uid="uid://ot5i7sx7bph1" path="res://scripts/PlayerCard.gd" id="1_qxqhp"]
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("img", "name_label", "hp_label")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-script = ExtResource("1_qxqhp")
-
-[node name="sprite" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="nome" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -5.0
-offset_right = 5.0
-offset_bottom = 23.0
+anchor_bottom = 0.5
 grow_horizontal = 2
-size_flags_vertical = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_qxqhp")
+img = NodePath("MarginSprite/Sprite")
+name_label = NodePath("VBoxCard/MarginName/Name")
+hp_label = NodePath("VBoxCard/MarginHP/HP")
+
+[node name="MarginSprite" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Sprite" type="TextureRect" parent="MarginSprite"]
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 4
+
+[node name="VBoxCard" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginName" type="MarginContainer" parent="VBoxCard"]
+layout_mode = 2
+theme_override_constants/margin_top = -15
+
+[node name="Name" type="Label" parent="VBoxCard/MarginName"]
+layout_mode = 2
+size_flags_vertical = 3
 horizontal_alignment = 1
 clip_text = true
 
-[node name="hp" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -0.5
-offset_top = -23.0
-offset_right = 0.5
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
+[node name="MarginHP" type="MarginContainer" parent="VBoxCard"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="HP" type="Label" parent="VBoxCard/MarginHP"]
+layout_mode = 2
+size_flags_vertical = 3
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="Spacer" type="Control" parent="VBoxCard"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+size_flags_vertical = 3
