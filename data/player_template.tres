@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="PlayerData" load_steps=4 format=3 uid="uid://14hlsxpdcql"]
 
-[ext_resource type="Texture2D" uid="uid://caa2qy5605wpg" path="res://assets/CuteCards - asset pack/pixelCards/Ace.png" id="1_lqxvm"]
+[ext_resource type="Texture2D" uid="uid://bdkqeauil38r2" path="res://assets/Ace.png" id="1_lqxvm"]
 [ext_resource type="Script" uid="uid://cnmdepsfgo5jr" path="res://scripts/ItemData.gd" id="1_s51tg"]
 [ext_resource type="Script" uid="uid://dntsx2ghovqsf" path="res://scripts/PlayerData.gd" id="2_lqxvm"]
 
 [resource]
 script = ExtResource("2_lqxvm")
-name = "Warrior"
-hp = 3
+name = "Player"
+hp = 9
 image = ExtResource("1_lqxvm")
 inventory = Array[ExtResource("1_s51tg")]([])
 metadata/_custom_type_script = "uid://dntsx2ghovqsf"

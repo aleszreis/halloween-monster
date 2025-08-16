@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bw7fqf0ggx7ny"
-path="res://.godot/imported/CuteCardsPixel_outline.png-a6e98435eaee73056b7affa8bbf5e1e2.ctex"
+uid="uid://bdkqeauil38r2"
+path="res://.godot/imported/Ace.png-2760e9247d3e81e16f9a241274622ee6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/CuteCards - asset pack/pixelCards/CuteCardsPixel_outline.png"
-dest_files=["res://.godot/imported/CuteCardsPixel_outline.png-a6e98435eaee73056b7affa8bbf5e1e2.ctex"]
+source_file="res://assets/Ace.png"
+dest_files=["res://.godot/imported/Ace.png-2760e9247d3e81e16f9a241274622ee6.ctex"]
 
 [params]
 
