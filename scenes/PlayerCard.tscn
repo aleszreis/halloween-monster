@@ -4,66 +4,69 @@
 
 [node name="Control" type="Control" node_paths=PackedStringArray("img", "name_label", "hp_label")]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_qxqhp")
-img = NodePath("MarginSprite/Sprite")
-name_label = NodePath("VBoxCard/MarginName/Name")
-hp_label = NodePath("VBoxCard/MarginHP/HP")
+img = NodePath("AspectRatioContainer/Sprite")
+name_label = NodePath("AspectRatioContainer/VBoxCard/MarginName/PanelContainer/Name")
+hp_label = NodePath("AspectRatioContainer/VBoxCard/MarginHP/PanelContainer/HP")
 
-[node name="MarginSprite" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(100, 0)
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -10.5
+offset_right = 10.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+ratio = 0.75
+stretch_mode = 1
+alignment_horizontal = 0
+alignment_vertical = 0
 
-[node name="Sprite" type="TextureRect" parent="MarginSprite"]
+[node name="Sprite" type="TextureRect" parent="AspectRatioContainer"]
 layout_mode = 2
-expand_mode = 3
-stretch_mode = 4
+expand_mode = 4
+stretch_mode = 5
 
-[node name="VBoxCard" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="MarginName" type="MarginContainer" parent="VBoxCard"]
+[node name="VBoxCard" type="VBoxContainer" parent="AspectRatioContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = -15
 
-[node name="Name" type="Label" parent="VBoxCard/MarginName"]
+[node name="MarginName" type="MarginContainer" parent="AspectRatioContainer/VBoxCard"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/VBoxCard/MarginName"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Name" type="Label" parent="AspectRatioContainer/VBoxCard/MarginName/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 horizontal_alignment = 1
+vertical_alignment = 1
 clip_text = true
 
-[node name="MarginHP" type="MarginContainer" parent="VBoxCard"]
+[node name="MarginHP" type="MarginContainer" parent="AspectRatioContainer/VBoxCard"]
 layout_mode = 2
-theme_override_constants/margin_top = 5
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
 
-[node name="HP" type="Label" parent="VBoxCard/MarginHP"]
+[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/VBoxCard/MarginHP"]
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 0
+
+[node name="HP" type="Label" parent="AspectRatioContainer/VBoxCard/MarginHP/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
 horizontal_alignment = 1
 vertical_alignment = 2
-
-[node name="Spacer" type="Control" parent="VBoxCard"]
-custom_minimum_size = Vector2(0, 15)
-layout_mode = 2
-size_flags_vertical = 3

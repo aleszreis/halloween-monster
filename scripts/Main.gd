@@ -18,9 +18,9 @@ func carregar_jogadores():
 	var jogador_real = preload("res://data/player_template.tres")
 	jogadores_data.append(jogador_real)
 
-	# Cria 7 AIs a partir de um template
+	# Cria 11 AIs a partir de um template
 	var template_ai = preload("res://data/player_template.tres")
-	for i in range(7):
+	for i in range(14):
 		var ai = template_ai.duplicate(true)  # duplicar recursivamente
 		ai.name = "AI %d" % (i + 1)
 		jogadores_data.append(ai)

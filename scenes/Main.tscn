@@ -11,9 +11,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_elqb8")
-player_area = NodePath("Screen/MarginContainer/PlayerArea")
-battlefield_area = NodePath("Screen/EnemyArea/BattlefieldArea")
-up_next_area = NodePath("Screen/EnemyArea/UpNextArea")
+player_area = NodePath("MarginContainer/Screen/PlayerArea")
+battlefield_area = NodePath("MarginContainer/Screen/EnemyArea/BattlefieldArea")
+up_next_area = NodePath("MarginContainer/Screen/EnemyArea/UpNextArea")
 
 [node name="background" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -25,43 +25,46 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
 texture = ExtResource("2_rvslj")
-expand_mode = 2
+expand_mode = 5
 
-[node name="Screen" type="VBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="EnemyArea" type="HBoxContainer" parent="Screen"]
+[node name="Screen" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="EnemyArea" type="HBoxContainer" parent="MarginContainer/Screen"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
 
-[node name="BattlefieldArea" type="HBoxContainer" parent="Screen/EnemyArea"]
+[node name="BattlefieldArea" type="HBoxContainer" parent="MarginContainer/Screen/EnemyArea"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="UpNextArea" type="HBoxContainer" parent="Screen/EnemyArea"]
+[node name="UpNextArea" type="HBoxContainer" parent="MarginContainer/Screen/EnemyArea"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Spacer" type="Control" parent="Screen"]
-custom_minimum_size = Vector2(0, 50)
+[node name="Spacer" type="Control" parent="MarginContainer/Screen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="PlayerArea" type="HBoxContainer" parent="MarginContainer/Screen"]
 layout_mode = 2
 size_flags_vertical = 6
-size_flags_stretch_ratio = 0.75
-
-[node name="MarginContainer" type="MarginContainer" parent="Screen"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.9
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 15
-
-[node name="PlayerArea" type="HBoxContainer" parent="Screen/MarginContainer"]
-layout_mode = 2
+size_flags_stretch_ratio = 1.5
+alignment = 1
