@@ -5,7 +5,7 @@ var player_card_scene = preload("res://scenes/PlayerCard.tscn")
 # Array de PlayerData: 1 jogador + 7 AIs
 var jogadores_data = []
 
-@export var player_area: HBoxContainer
+@export var player_area: HFlowContainer
 @export var battlefield_area: HBoxContainer
 @export var up_next_area: HBoxContainer
 

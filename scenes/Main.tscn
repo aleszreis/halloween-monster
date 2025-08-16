@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 4
 script = ExtResource("1_elqb8")
 player_area = NodePath("MarginContainer/Screen/PlayerArea")
 battlefield_area = NodePath("MarginContainer/Screen/EnemyArea/BattlefieldArea")
@@ -59,12 +60,10 @@ size_flags_stretch_ratio = 2.0
 
 [node name="Spacer" type="Control" parent="MarginContainer/Screen"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.6
 
-[node name="PlayerArea" type="HBoxContainer" parent="MarginContainer/Screen"]
+[node name="PlayerArea" type="HFlowContainer" parent="MarginContainer/Screen"]
 layout_mode = 2
-size_flags_vertical = 6
-size_flags_stretch_ratio = 1.5
-alignment = 1
+size_flags_vertical = 3
