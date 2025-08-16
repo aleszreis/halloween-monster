@@ -6,8 +6,8 @@
 
 [resource]
 script = ExtResource("2_lqxvm")
-name = "Warrior"
-hp = 3
+name = "Player"
+hp = 9
 image = ExtResource("1_lqxvm")
 inventory = Array[ExtResource("1_s51tg")]([])
 metadata/_custom_type_script = "uid://dntsx2ghovqsf"

@@ -5,7 +5,7 @@ var player_card_scene = preload("res://scenes/PlayerCard.tscn")
 # Array de PlayerData: 1 jogador + 7 AIs
 var jogadores_data = []
 
-@export var player_area: HFlowContainer
+@export var player_area: GridContainer
 @export var battlefield_area: HBoxContainer
 @export var up_next_area: HBoxContainer
 
@@ -20,7 +20,7 @@ func carregar_jogadores():
 
 	# Cria 11 AIs a partir de um template
 	var template_ai = preload("res://data/player_template.tres")
-	for i in range(14):
+	for i in range(11):
 		var ai = template_ai.duplicate(true)  # duplicar recursivamente
 		ai.name = "AI %d" % (i + 1)
 		jogadores_data.append(ai)
