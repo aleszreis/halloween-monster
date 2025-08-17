@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://ba32e6jvv38f8"]
+
+[ext_resource type="Script" uid="uid://cnmdepsfgo5jr" path="res://scripts/ItemData.gd" id="1_s6q3n"]
+[ext_resource type="Script" uid="uid://c0d5wu3jviwcn" path="res://scripts/EnemyData.gd" id="2_k0r3p"]
+[ext_resource type="Texture2D" uid="uid://ctqy8og5521fl" path="res://assets/enemy-sprites/witch.png" id="2_xexxt"]
+
+[resource]
+script = ExtResource("2_k0r3p")
+name = "Witch"
+maxHp = 10
+image = ExtResource("2_xexxt")
+drops = Array[ExtResource("1_s6q3n")]([])
+metadata/_custom_type_script = "uid://c0d5wu3jviwcn"

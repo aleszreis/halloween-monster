@@ -1,41 +1,73 @@
-[gd_scene load_steps=2 format=3 uid="uid://qxlk0c3aysmg"]
+[gd_scene load_steps=2 format=3 uid="uid://b12un8bamn1hw"]
 
 [ext_resource type="Script" uid="uid://6g6tocnv2t8f" path="res://scripts/EnemyCard.gd" id="1_kjm37"]
 
-[node name="Control" type="Control"]
+[node name="CardControl" type="Control" node_paths=PackedStringArray("img", "name_label", "hp_label")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
 script = ExtResource("1_kjm37")
+img = NodePath("AspectRatioContainer/Sprite")
+name_label = NodePath("AspectRatioContainer/VBoxCard/MarginName/PanelContainer/Name")
+hp_label = NodePath("AspectRatioContainer/VBoxCard/MarginHP/PanelContainer/HP")
 
-[node name="sprite" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+ratio = 0.75
+stretch_mode = 0
 
-[node name="name_label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="curr_hp_label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="max_hp_label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="DropsList" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="drop_spr_1" type="TextureRect" parent="DropsList"]
+[node name="Sprite" type="TextureRect" parent="AspectRatioContainer"]
 layout_mode = 2
+expand_mode = 4
+stretch_mode = 5
 
-[node name="drop_spr_2" type="TextureRect" parent="DropsList"]
+[node name="VBoxCard" type="VBoxContainer" parent="AspectRatioContainer"]
 layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="MarginName" type="MarginContainer" parent="AspectRatioContainer/VBoxCard"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/VBoxCard/MarginName"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Name" type="Label" parent="AspectRatioContainer/VBoxCard/MarginName/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="MarginHP" type="MarginContainer" parent="AspectRatioContainer/VBoxCard"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/VBoxCard/MarginHP"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HP" type="Label" parent="AspectRatioContainer/VBoxCard/MarginHP/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 2

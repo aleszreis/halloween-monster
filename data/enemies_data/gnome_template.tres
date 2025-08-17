@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://njjr5563aqmy"]
+
+[ext_resource type="Texture2D" uid="uid://ctqy8og5521fl" path="res://assets/enemy-sprites/witch.png" id="1_ddcyu"]
+[ext_resource type="Script" uid="uid://cnmdepsfgo5jr" path="res://scripts/ItemData.gd" id="2_021qg"]
+[ext_resource type="Script" uid="uid://c0d5wu3jviwcn" path="res://scripts/EnemyData.gd" id="3_7qvia"]
+
+[resource]
+script = ExtResource("3_7qvia")
+name = "Gnome"
+hp = 5
+image = ExtResource("1_ddcyu")
+inventory = Array[ExtResource("2_021qg")]([])
+metadata/_custom_type_script = "uid://c0d5wu3jviwcn"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://dnflkyknsi4vg"]
+
+[ext_resource type="Texture2D" uid="uid://ckrv2px4wghhu" path="res://assets/enemy-sprites/mermaid.png" id="1_g24a2"]
+[ext_resource type="Script" uid="uid://cnmdepsfgo5jr" path="res://scripts/ItemData.gd" id="2_bn87c"]
+[ext_resource type="Script" uid="uid://c0d5wu3jviwcn" path="res://scripts/EnemyData.gd" id="3_d58dq"]
+
+[resource]
+script = ExtResource("3_d58dq")
+name = "Merman"
+hp = 5
+image = ExtResource("1_g24a2")
+inventory = Array[ExtResource("2_bn87c")]([])
+metadata/_custom_type_script = "uid://c0d5wu3jviwcn"

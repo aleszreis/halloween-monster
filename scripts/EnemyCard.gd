@@ -1,14 +1,13 @@
 extends Control
 
-@onready var img = $sprite
-@onready var name_label = $name_label
-@onready var curr_hp_label = $curr_hp_label
-@onready var max_hp_label = $max_hp_label
+@export var img: TextureRect
+@export var name_label: Label
+@export var hp_label: Label
 
 var dados: EnemyData
 
 func set_data(data: EnemyData):
-	img.texture = data.image
-	name_label.text = data.name
-	curr_hp_label.text = str(data.curr_hp)
-	max_hp_label.text = str(data.max_hp)
+	dados = data
+	img.texture = dados.image
+	name_label.text = dados.name
+	hp_label.text = str(dados.hp)
