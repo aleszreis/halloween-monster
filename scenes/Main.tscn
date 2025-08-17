@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://8om46qkydudx"]
+[gd_scene load_steps=7 format=3 uid="uid://8om46qkydudx"]
 
-[ext_resource type="Script" uid="uid://bfftcgxmqgkc1" path="res://scripts/Main.gd" id="1_elqb8"]
+[ext_resource type="Script" uid="uid://bfftcgxmqgkc1" path="res://scripts/MainUI.gd" id="1_elqb8"]
+[ext_resource type="Script" uid="uid://clc8824g0etue" path="res://scripts/GameManager.gd" id="2_0bbpv"]
 [ext_resource type="Texture2D" uid="uid://bc3884cymkgux" path="res://assets/background.png" id="2_rvslj"]
 
-[node name="Control" type="Control" node_paths=PackedStringArray("player_area", "battlefield_area", "up_next_area")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvslj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0bbpv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rarhs"]
+
+[node name="MainControl" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,12 +18,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 4
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("2_0bbpv")
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("player_area", "battlefield_area", "up_next_area")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_elqb8")
 player_area = NodePath("MarginContainer/Screen/PlayerArea")
 battlefield_area = NodePath("MarginContainer/Screen/EnemyArea/BattlefieldArea")
 up_next_area = NodePath("MarginContainer/Screen/EnemyArea/UpNextArea")
 
-[node name="background" type="TextureRect" parent="."]
+[node name="background" type="TextureRect" parent="UI"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -28,44 +46,76 @@ size_flags_vertical = 3
 texture = ExtResource("2_rvslj")
 expand_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 36.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 25
 
-[node name="Screen" type="VBoxContainer" parent="MarginContainer"]
+[node name="Screen" type="VBoxContainer" parent="UI/MarginContainer"]
 layout_mode = 2
 
-[node name="EnemyArea" type="HBoxContainer" parent="MarginContainer/Screen"]
+[node name="EnemyArea" type="HBoxContainer" parent="UI/MarginContainer/Screen"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 
-[node name="BattlefieldArea" type="HBoxContainer" parent="MarginContainer/Screen/EnemyArea"]
+[node name="BattlefieldArea" type="GridContainer" parent="UI/MarginContainer/Screen/EnemyArea"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
+columns = 3
 
-[node name="UpNextArea" type="HBoxContainer" parent="MarginContainer/Screen/EnemyArea"]
+[node name="FieldSlot1" type="PanelContainer" parent="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 2.0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rvslj")
 
-[node name="Spacer" type="Control" parent="MarginContainer/Screen"]
+[node name="FieldSlot2" type="PanelContainer" parent="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0bbpv")
+
+[node name="FieldSlot3" type="PanelContainer" parent="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rarhs")
+
+[node name="Spacer" type="Control" parent="UI/MarginContainer/Screen/EnemyArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="UpNextArea" type="GridContainer" parent="UI/MarginContainer/Screen/EnemyArea"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+columns = 2
+
+[node name="Spacer" type="Control" parent="UI/MarginContainer/Screen"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="PlayerArea" type="GridContainer" parent="MarginContainer/Screen"]
+[node name="PlayerArea" type="GridContainer" parent="UI/MarginContainer/Screen"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 columns = 6
+
+[connection signal="game_loaded" from="GameManager" to="UI" method="_on_game_loaded"]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://dgd1wv5o12y3f"]
+
+[ext_resource type="Script" uid="uid://cnmdepsfgo5jr" path="res://scripts/ItemData.gd" id="1_udwqn"]
+[ext_resource type="Script" uid="uid://c0d5wu3jviwcn" path="res://scripts/EnemyData.gd" id="2_p16yg"]
+[ext_resource type="Texture2D" uid="uid://ndvr20y4vyvw" path="res://assets/enemy-sprites/minotaur.png" id="2_yg6fl"]
+
+[resource]
+script = ExtResource("2_p16yg")
+name = "Minotaur"
+maxHp = 40
+image = ExtResource("2_yg6fl")
+drops = Array[ExtResource("1_udwqn")]([])
+metadata/_custom_type_script = "uid://c0d5wu3jviwcn"

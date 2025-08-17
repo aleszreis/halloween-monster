@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ot5i7sx7bph1" path="res://scripts/PlayerCard.gd" id="1_qxqhp"]
 
-[node name="CardControl" type="Control" node_paths=PackedStringArray("img", "name_label", "hp_label")]
+[node name="PlayerCardControl" type="Control" node_paths=PackedStringArray("img", "name_label", "hp_label", "visual")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,59 +12,70 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_qxqhp")
-img = NodePath("AspectRatioContainer/Sprite")
-name_label = NodePath("AspectRatioContainer/VBoxCard/MarginName/PanelContainer/Name")
-hp_label = NodePath("AspectRatioContainer/VBoxCard/MarginHP/PanelContainer/HP")
+img = NodePath("Visual/AspectRatioContainer/Sprite")
+name_label = NodePath("Visual/AspectRatioContainer/VBoxCard/MarginName/PanelContainer/Name")
+hp_label = NodePath("Visual/AspectRatioContainer/VBoxCard/MarginHP/PanelContainer/HP")
+visual = NodePath("Visual")
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="Visual" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="Visual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
 ratio = 0.75
 stretch_mode = 0
 
-[node name="Sprite" type="TextureRect" parent="AspectRatioContainer"]
+[node name="Sprite" type="TextureRect" parent="Visual/AspectRatioContainer"]
 layout_mode = 2
 expand_mode = 4
 stretch_mode = 5
 
-[node name="VBoxCard" type="VBoxContainer" parent="AspectRatioContainer"]
+[node name="VBoxCard" type="VBoxContainer" parent="Visual/AspectRatioContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
 
-[node name="MarginName" type="MarginContainer" parent="AspectRatioContainer/VBoxCard"]
+[node name="MarginName" type="MarginContainer" parent="Visual/AspectRatioContainer/VBoxCard"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/VBoxCard/MarginName"]
+[node name="PanelContainer" type="PanelContainer" parent="Visual/AspectRatioContainer/VBoxCard/MarginName"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="Name" type="Label" parent="AspectRatioContainer/VBoxCard/MarginName/PanelContainer"]
+[node name="Name" type="Label" parent="Visual/AspectRatioContainer/VBoxCard/MarginName/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
-[node name="MarginHP" type="MarginContainer" parent="AspectRatioContainer/VBoxCard"]
+[node name="MarginHP" type="MarginContainer" parent="Visual/AspectRatioContainer/VBoxCard"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 
-[node name="PanelContainer" type="PanelContainer" parent="AspectRatioContainer/VBoxCard/MarginHP"]
+[node name="PanelContainer" type="PanelContainer" parent="Visual/AspectRatioContainer/VBoxCard/MarginHP"]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="HP" type="Label" parent="AspectRatioContainer/VBoxCard/MarginHP/PanelContainer"]
+[node name="HP" type="Label" parent="Visual/AspectRatioContainer/VBoxCard/MarginHP/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 horizontal_alignment = 1

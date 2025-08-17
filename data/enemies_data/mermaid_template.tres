@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3 uid="uid://2lsubdyo2asq"]
+
+[ext_resource type="Script" uid="uid://cnmdepsfgo5jr" path="res://scripts/ItemData.gd" id="1_yldca"]
+[ext_resource type="Texture2D" uid="uid://ckrv2px4wghhu" path="res://assets/enemy-sprites/mermaid.png" id="2_7lnv3"]
+[ext_resource type="Script" uid="uid://c0d5wu3jviwcn" path="res://scripts/EnemyData.gd" id="2_na4n2"]
+
+[resource]
+script = ExtResource("2_na4n2")
+name = "Mermaid"
+maxHp = 19
+image = ExtResource("2_7lnv3")
+drops = Array[ExtResource("1_yldca")]([])
+metadata/_custom_type_script = "uid://c0d5wu3jviwcn"
