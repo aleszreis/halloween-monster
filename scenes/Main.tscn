@@ -1,14 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://8om46qkydudx"]
+[gd_scene load_steps=5 format=3 uid="uid://8om46qkydudx"]
 
 [ext_resource type="Script" uid="uid://bfftcgxmqgkc1" path="res://scripts/MainUI.gd" id="1_elqb8"]
 [ext_resource type="Script" uid="uid://clc8824g0etue" path="res://scripts/GameManager.gd" id="2_0bbpv"]
 [ext_resource type="Texture2D" uid="uid://bc3884cymkgux" path="res://assets/background.png" id="2_rvslj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvslj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0bbpv"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rarhs"]
+[ext_resource type="Script" uid="uid://c87tun7k2dfgl" path="res://scripts/BattlefieldSlot.gd" id="4_rarhs"]
 
 [node name="MainControl" type="Control"]
 layout_mode = 3
@@ -51,8 +46,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 36.0
-offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 30
@@ -75,23 +68,26 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
 columns = 3
 
-[node name="FieldSlot1" type="PanelContainer" parent="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea"]
+[node name="FieldSlot1" type="Control" parent="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rvslj")
+mouse_default_cursor_shape = 7
+script = ExtResource("4_rarhs")
 
-[node name="FieldSlot2" type="PanelContainer" parent="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea"]
+[node name="FieldSlot2" type="Control" parent="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_0bbpv")
+mouse_default_cursor_shape = 7
+script = ExtResource("4_rarhs")
 
-[node name="FieldSlot3" type="PanelContainer" parent="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea"]
+[node name="FieldSlot3" type="Control" parent="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_rarhs")
+mouse_default_cursor_shape = 7
+script = ExtResource("4_rarhs")
 
 [node name="Spacer" type="Control" parent="UI/MarginContainer/Screen/EnemyArea"]
 layout_mode = 2
@@ -118,4 +114,9 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 columns = 6
 
+[connection signal="enemy_died" from="GameManager" to="UI" method="_on_enemy_death"]
+[connection signal="enemy_entered" from="GameManager" to="UI" method="_on_enemy_entered"]
 [connection signal="game_loaded" from="GameManager" to="UI" method="_on_game_loaded"]
+[connection signal="slot_clicked" from="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea/FieldSlot1" to="GameManager" method="_on_field_slot_clicked"]
+[connection signal="slot_clicked" from="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea/FieldSlot2" to="GameManager" method="_on_field_slot_clicked"]
+[connection signal="slot_clicked" from="UI/MarginContainer/Screen/EnemyArea/BattlefieldArea/FieldSlot3" to="GameManager" method="_on_field_slot_clicked"]

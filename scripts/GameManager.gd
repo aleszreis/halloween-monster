@@ -1,19 +1,16 @@
 extends Node2D
 
-var player_card_scene = preload("res://scenes/PlayerCard.tscn")
-var enemy_card_scene = preload("res://scenes/EnemyCard.tscn")
-
 var players: Array[PlayerData] = []
-var monsters: Array[EnemyData] = []
+var enemies: Array[EnemyData] = []
 var current_turn := 0
 var battlefield_slots: Array = [null, null, null]  # null = slot vazio
-var next_enemies: Array = []  # cartas esperando
 
-signal game_loaded(players, monsters)
+signal game_loaded(players, battlefield, upnext)
+signal enemy_died(index)
+signal enemy_entered(enemy, slot_to_enter)
 
 func _ready():
 	setup_table()
-	start_turn()
 	
 func carregar_jogadores():
 	# Carrega o jogador real
@@ -28,52 +25,38 @@ func carregar_jogadores():
 		players.append(ai)
 
 func carregar_inimigos():
-	# Carrega os inimigos
-	var mermaid_template = preload("res://data/enemies_data/mermaid_template.tres")
-	var minotaur_template = preload("res://data/enemies_data/minotaur_template.tres")
-	var witch_template = preload("res://data/enemies_data/witch_template.tres")
-	var merman_template = preload("res://data/enemies_data/merman_template.tres")
-	var gnome_template = preload("res://data/enemies_data/gnome_template.tres")
-	var demon_template = preload("res://data/enemies_data/demon_template.tres")
-	monsters.append_array([mermaid_template, minotaur_template, witch_template, merman_template, gnome_template, demon_template])
+	var dir := DirAccess.open("res://data/enemies_data")
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if not dir.current_is_dir() and file_name.ends_with(".tres"):
+				var enemy_template = load("res://data/enemies_data/%s" % file_name)
+				enemies.append(enemy_template)
+			file_name = dir.get_next()
+		dir.list_dir_end()
 
 func setup_table() -> void:
 	carregar_jogadores()
 	carregar_inimigos()
-	emit_signal("game_loaded", players, monsters)
+	while battlefield_slots.any(func(slot): return slot == null):
+		try_move_card_to_battlefield()
+	emit_signal("game_loaded", players, battlefield_slots, enemies)
+	
+func _on_field_slot_clicked(index):
+	if battlefield_slots[index] != null:
+		battlefield_slots[index] = null
+		emit_signal("enemy_died", index)
+		try_move_card_to_battlefield()
 
-# Player's turn actions
-func start_turn() -> void:
-	var player = players[current_turn]
-	emit_signal("turn_started", player)
-
-func end_turn() -> void:
-	var player = players[current_turn]
-	emit_signal("turn_ended", player)
-	current_turn = (current_turn + 1) % players.size()
-	start_turn()
-
-func player_attack_monster(player: PlayerData, monster: EnemyData, amount: int) -> void:
-	monster.take_damage(amount)
-	emit_signal("monster_damaged", monster, amount)
-	print("%s causa %d de dano em %s (HP %d)" %
-	[player.name, amount, monster.name, monster.hp])
-	# Exemplo: fim do turno automático
-	end_turn()
-
-# Effects' turn actions
 func try_move_card_to_battlefield():
-	if not next_enemies:
+	if not enemies:
+		print("no enemies to pull")
 		return
 		
-	# Procura primeiro slot vazio
-	for i in range(battlefield_slots.size()):
-		if battlefield_slots[i] == null:
-			var card = next_enemies.pop_front()
-			battlefield_slots[i] = card
-			emit_signal("card_moved", card, i)
+	for slot in range(battlefield_slots.size()):
+		if battlefield_slots[slot] == null:
+			var card = enemies.pop_front()
+			battlefield_slots[slot] = card
+			emit_signal("enemy_entered", slot)
 			return
-
-func remove_card_from_battlefield(slot_index: int):
-	battlefield_slots[slot_index] = null
-	try_move_card_to_battlefield()  # preenche com próxima carta, se houver
